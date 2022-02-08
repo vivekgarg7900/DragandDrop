@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+// import ReactFlowStart from './ReactFlow/ReactFlowStart';
+import DragAndDrop from './ReactFlow/DragAndDrop';
+// import Second from './ReactFlow/Second';
+// import Sidebar from './ReactFlow/Sidebar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+    {/* <ReactFlowStart/> */}
+    {/* <Second/> */}
+   {/* <Sidebar/> */}
+   <DragAndDrop/>
     </div>
   );
 }
