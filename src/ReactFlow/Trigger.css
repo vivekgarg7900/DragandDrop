@@ -13,7 +13,6 @@
 
 }
 .text{
-   
     margin-left: 50px;
     font-family: sans-serif;
 }
@@ -22,8 +21,8 @@
       clip-path: circle(50% at 25% 25%); 
        height:20px;
       width:20px;
-      transform: rotate(290deg);
       background: yellowgreen;
+      right:-30px;
       
 }
 
