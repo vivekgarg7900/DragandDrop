@@ -7,12 +7,14 @@ import {
   faTrash,
   faVoicemail,
   faArrowAltCircleRight,
-  faPizzaSlice,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { memo } from "react";
+
 import "./Trigger.css";
+
 import mapping_data from "./Data";
+import HandleCss from "./HandleCss";
 
 const d = {
   send_email: {
@@ -36,13 +38,11 @@ const CustomNode = memo(({ data = {} }) => {
   const Handle = data?.Handle || null;
   const Position = data?.Position || null;
 
-  const handleCopy = data?.copyElement || null;
-
-  const mappeddata = mapping_data?.find(
-    (x) => x?.type?.trim() === data?.label?.trim()
+  const filteredElementData = mapping_data?.find(
+    (element) => element?.type?.trim() === data?.label?.trim()
   );
 
-
+  
   return (
     <div>
       <div>
@@ -91,55 +91,50 @@ const CustomNode = memo(({ data = {} }) => {
           />
 
           <div className="text">{data.label || data.type}</div>
-          {Array(mappeddata?.handles?.left)
+          {Array(filteredElementData?.handles?.left)
             ?.fill("")
             ?.map((_, index) => (
               <Handle
                 type="target"
                 position={Position?.Top}
                 id={`target_${index.toString()}`}
-                style={{ borderRadius: "50%", top: `10px` }}
-              ></Handle>
+                style={{ borderRadius: "50%", top: `0%` }}
+              />
             ))}
 
-          {Array(mappeddata?.handles?.right)
+          {Array(filteredElementData?.handles?.right)
             ?.fill("")
             ?.map((_, index) => (
               <div>
                 <Handle
                   type="source"
                   position={Position?.Bottom}
-                  id={mappeddata?.handleRightData[index]}
+                  id={filteredElementData?.handleRightData[index]}
                   style={{
                     borderRadius: "50%",
-                    top: `10`,
-                    transform: `rotate(${
-                      (180 / mappeddata?.right?.handles) * index
-                    })`,
+                    top: `30%`,
                   }}
-                ></Handle>
+                />
               </div>
             ))}
 
-          <div style={{display:"flex"}}>
+          <div style={{ display: "flex" }}>
             <div>
-            <FontAwesomeIcon
-              icon={faArrowAltCircleRight}
-              style={{
-                height: "auto",
-                width: "15px",
-                marginLeft: "5px",
-                color: "white",
-                padding: "5px",
-                borderRadius: "50%",
-                backgroundColor: "green",
-                marginLeft:"60px",
-                position:"absolute",
-                top:"50%"
-              }}
-            />
+              <FontAwesomeIcon
+                icon={faArrowAltCircleRight}
+                style={{
+                  height: "auto",
+                  width: "15px",
+                  color: "white",
+                  padding: "5px",
+                  borderRadius: "50%",
+                  backgroundColor: "green",
+                  marginLeft: "60px",
+                  position: "absolute",
+                  top: "27%",
+                }}
+              />
             </div>
-           
           </div>
         </div>
       </div>

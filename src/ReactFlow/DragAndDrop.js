@@ -8,10 +8,12 @@ import ReactFlow, {
   Position,
   isNode,
 } from "react-flow-renderer";
-import ButtonEdge from "./ButtonEdge";
+import dagre from "dagre";
+
 import Sidebar from "./Sidebar";
 import CustomNode from "./CustomNode";
-import dagre from "dagre";
+import ButtonEdge from "./ButtonEdge";
+import HandleCss from "./HandleCss";
 
 let nodeId = 0;
 const getNodeId = () => {
@@ -30,6 +32,7 @@ const edgeTypes = {
   buttonedge: ButtonEdge,
 };
 
+
 const DragAndDrop = ({ elements = [], setElements = () => {} }) => {
   const reactFlowWrapper = useRef(null);
 
@@ -45,6 +48,12 @@ const DragAndDrop = ({ elements = [], setElements = () => {} }) => {
   useEffect(() => deleteEdge(), [deleteEdgeId]);
 
   useEffect(() => copyNode(), [copyNodeId]);
+
+  useEffect(() => {
+    if (reactFlowInstance && elements.length > 0) {
+      reactFlowInstance.fitView();
+    }
+  }, [reactFlowInstance, elements.length]);
 
   const onLoad = (_reactFlowInstance) =>
     setReactFlowInstance(_reactFlowInstance);
@@ -106,6 +115,8 @@ const DragAndDrop = ({ elements = [], setElements = () => {} }) => {
         Handle,
         Position,
         icon: type,
+        nodeHeight:nodeHeight,
+        nodeWidth:nodeWidth,
         setDeleteNodeId: setDeleteNodeId,
         setCopyNodeId: setCopyNodeId,
         onDrop: onDrop,
@@ -177,7 +188,7 @@ const DragAndDrop = ({ elements = [], setElements = () => {} }) => {
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
   const nodeWidth = 200;
-  const nodeHeight = 200;
+  const nodeHeight = 30;
 
   const getLayoutedElements = (elements, direction = "TB") => {
     const isHorizontal = direction === "LR";

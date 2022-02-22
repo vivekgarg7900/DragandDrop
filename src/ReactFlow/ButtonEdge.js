@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  getBezierPath,
   getEdgeCenter,
   getSmoothStepPath,
   getMarkerEnd,
@@ -19,7 +18,7 @@ const CustomEdge = ({
   targetY,
   sourcePosition,
   targetPosition,
-  style = {stroke:"red"},
+  style = { stroke: "red" },
   data,
   arrowHeadType,
   markerEndId,
@@ -29,8 +28,10 @@ const CustomEdge = ({
     sourceY,
     targetX,
     targetY,
-  })
+  });
+
   const markerEnd = getMarkerEnd(arrowHeadType, markerEndId);
+
   const [edgeCenterX, edgeCenterY] = getEdgeCenter({
     sourceX,
     sourceY,
@@ -39,7 +40,6 @@ const CustomEdge = ({
   });
 
   //edge delete function
- 
 
   return (
     <>
@@ -79,6 +79,6 @@ const CustomEdge = ({
       </foreignObject>
     </>
   );
-}
+};
 
 export default CustomEdge;
